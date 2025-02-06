@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Règles générales : seuls les utilisateurs authentifiés peuvent accéder aux données
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Sécuriser les ranges : un utilisateur peut seulement accéder, lire et écrire ses propres ranges
+    match /ranges/{rangeId} {
+      allow read, write: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+  }
+}

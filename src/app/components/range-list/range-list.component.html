@@ -1,0 +1,39 @@
+<div class="range-list-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <img src="/assets/logo_app.png" alt="Logo" class="header-logo" />
+        <span class="header-title">Poker Ranger</span>
+      </div>
+      <div class="header-right">
+        <button class="add-button" (click)="addRange()">
+          <span class="material-symbols-outlined">add</span>
+        </button>
+        <button class="back-button" (click)="goHome()">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+      </div>
+    </header>
+  
+    <!-- Contenu : liste des ranges -->
+    <div class="content">
+      <ng-container *ngIf="ranges$ | async as ranges; else loading">
+        <div class="range-card" *ngFor="let range of ranges">
+          <div class="card-content" (click)="editRange(range)">
+            <h2 class="range-name">{{ range.name }}</h2>
+            <p class="range-positions">
+              Positions: {{ range.positions.join(', ') }}
+            </p>
+          </div>
+          <!-- Bouton supprimer à droite -->
+          <button class="delete-button" (click)="deleteRange(range, $event)">
+            <span class="material-symbols-outlined">delete</span>
+          </button>
+        </div>
+      </ng-container>
+      <ng-template #loading>
+        <p class="loading">Chargement...</p>
+      </ng-template>
+    </div>
+  </div>
+  

@@ -1,0 +1,22 @@
+<div class="home-container">
+    <!-- Section gauche : Logo et nom de l'application -->
+    <div class="left-section">
+      <img src="/assets/logo_app.png" alt="Poker Ranger Logo" class="logo-home" />
+      <h1 class="app-title">Poker Ranger</h1>
+    </div>
+    
+    <!-- Section droite : Cartes de navigation -->
+    <div class="right-section">
+      <!-- Carte "Mes ranges" -->
+      <div class="card" (click)="goToRanges()">
+        <span class="material-symbols-outlined icon">edit_square</span>
+        <h2 class="card-title">Mes ranges</h2>
+      </div>
+      
+      <!-- Carte "Lancer un quiz" -->
+      <div class="card" (click)="goToQuiz()">
+        <span class="material-symbols-outlined icon">quiz</span>
+        <h2 class="card-title">Lancer un quiz</h2>
+      </div>
+    </div>
+  </div>

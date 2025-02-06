@@ -1,0 +1,77 @@
+/* Conteneur principal en deux colonnes */
+.home-container {
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(135deg, #2e2e2e, #1c1c1c);
+    overflow: hidden;
+  }
+  
+  /* Section gauche : logo et titre */
+  .left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #c3ef61;
+    padding: 1rem;
+  }
+  
+  .logo-home {
+    width: 150px; /* Ajustable */
+    margin-bottom: 1rem;
+  }
+  
+  .app-title {
+    font-size: 2.5rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+  }
+  
+  /* Section droite : conteneur des cartes */
+  .right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+  }
+  
+  /* Style commun aux cartes (glass card) */
+  .card {
+    position: relative;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(195,239,97,0.3), rgba(255,255,255,0));
+    border: 1px solid #c3ef61;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    max-width: 80%;
+    width: 80%;  /* Pour s'adapter aux petits écrans */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.5);
+  }
+  
+  /* Style pour l'icône dans la carte */
+  .icon {
+    font-size: 48px;
+    color: #c3ef61;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Style pour le titre dans la carte */
+  .card-title {
+    font-size: 1.5rem;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #c3ef61;
+  }
+  

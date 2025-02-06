@@ -1,0 +1,68 @@
+<div class="range-edit-container">
+    <!-- En-tête -->
+    <header class="header">
+      <div class="header-left">
+        <img src="/assets/logo_app.png" alt="Logo" class="header-logo" />
+        <span class="header-title">Poker Ranger</span>
+      </div>
+      <div class="header-right">
+        <button class="save-button" (click)="saveRange()" [disabled]="!hasChanges">
+          <span class="material-symbols-outlined">save</span>
+        </button>
+        <button class="back-button" (click)="goBack()">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+      </div>
+    </header>
+    
+    <!-- Contenu principal en trois colonnes -->
+    <div class="main-content">
+      <!-- Panneau gauche : Formulaire (nom + positions sous forme de chips) -->
+      <div class="left-panel">
+        <form [formGroup]="rangeForm" class="form-group">
+          <label for="rangeName">Nom de la range *</label>
+          <input id="rangeName" type="text" placeholder="Nom de la range"
+                 formControlName="name"/>
+        </form>
+        <div class="chips-container">
+          <div *ngFor="let pos of allPositions" 
+               class="chip" 
+               [class.selected]="isPositionSelected(pos)" 
+               (click)="togglePositionChip(pos)">
+            {{ pos }}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Panneau central : Grille des mains -->
+      <div class="center-panel">
+        <div class="grid-container">
+          <div class="grid" *ngIf="hands && hands.length">
+            <ng-container *ngFor="let row of handsGrid">
+              <div class="grid-row">
+                <div *ngFor="let cell of row" 
+                     class="grid-cell" 
+                     [ngStyle]="{'background-color': getActionColor(cell.action)}"
+                     (click)="assignAction(cell)">
+                  <div class="hand-label">{{ cell.name }}</div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Panneau droit : Liste des actions -->
+      <div class="right-panel">
+        <div class="actions-list">
+          <button *ngFor="let act of allActions"
+                  class="action-btn"
+                  [class.selected]="selectedAction === act"
+                  [ngStyle]="{'background-color': getActionColor(act)}"
+                  (click)="selectAction(act)">
+            {{ act }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
