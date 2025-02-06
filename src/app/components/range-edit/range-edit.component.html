@@ -1,10 +1,13 @@
 <div class="range-edit-container">
-    <!-- En-tête -->
+    <!-- Header : Saisie du nom et choix de la profondeur de stack -->
     <header class="header">
-      <div class="header-left">
-        <img src="/assets/logo_app.png" alt="Logo" class="header-logo" />
-        <span class="header-title">Poker Ranger</span>
-      </div>
+      <form [formGroup]="rangeForm" class="header-inputs">
+        <input type="text" formControlName="name" placeholder="Nom de la range" class="header-input" />
+        <select formControlName="stackDepth" class="header-select">
+          <option value="" disabled selected>Profondeur de stack</option>
+          <option *ngFor="let depth of allStackDepths" [value]="depth">{{ depth }}</option>
+        </select>
+    </form>
       <div class="header-right">
         <button class="save-button" (click)="saveRange()" [disabled]="!hasChanges">
           <span class="material-symbols-outlined">save</span>
@@ -14,16 +17,12 @@
         </button>
       </div>
     </header>
-    
+  
     <!-- Contenu principal en trois colonnes -->
     <div class="main-content">
-      <!-- Panneau gauche : Formulaire (nom + positions sous forme de chips) -->
+      <!-- Panneau gauche : Positions -->
       <div class="left-panel">
-        <form [formGroup]="rangeForm" class="form-group">
-          <label for="rangeName">Nom de la range *</label>
-          <input id="rangeName" type="text" placeholder="Nom de la range"
-                 formControlName="name"/>
-        </form>
+        <div class="positions-label">Positions :</div>
         <div class="chips-container">
           <div *ngFor="let pos of allPositions" 
                class="chip" 
@@ -66,3 +65,4 @@
       </div>
     </div>
   </div>
+  

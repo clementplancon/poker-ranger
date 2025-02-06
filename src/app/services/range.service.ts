@@ -16,6 +16,7 @@ export interface PokerRange {
     name: string;
     createdAt: Date;
     positions: Position[];
+    stackDepth: StackDepth;
     hands: Hand[];
 }
 
@@ -55,6 +56,14 @@ export enum ActionColor {
     CallFold = "#5681b4",
     Fold = "#878787",
     AllIn = "#f04a39",
+}
+
+export enum StackDepth {
+    VeryShallow = "(0BB - 15BB)",
+    Shallow = "(15BB - 25BB)",
+    Medium = "(25BB - 40BB)",
+    Deep = "(40BB - 60BB)",
+    VeryDeep = "(60BB+)",
 }
 
 @Injectable({
@@ -97,6 +106,7 @@ export class RangeService {
     // Mettre à jour une range existante
     async updateRange(id: string, data: Partial<PokerRange>): Promise<void> {
       const rangeDocRef = doc(this.firestore, 'ranges', id);
+      data.userId = this.auth.currentUser?.uid;
       await updateDoc(rangeDocRef, data);
     }
 

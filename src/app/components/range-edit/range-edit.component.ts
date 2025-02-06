@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Action, Hand, PokerRange, Position, RangeService } from '../../services/range.service';
+import { Action, Hand, PokerRange, Position, StackDepth, RangeService } from '../../services/range.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, NgFor } from '@angular/common';
 
@@ -20,7 +20,7 @@ export class RangeEditComponent implements OnInit, OnDestroy {
   isEditMode: boolean = false;
   rangeId: string | null = null;
 
-  // Formulaire pour nom et positions
+  // Formulaire pour le nom, la profondeur de stack et les positions
   rangeForm: FormGroup;
 
   // Indicateur de modifications non sauvegardées
@@ -31,6 +31,9 @@ export class RangeEditComponent implements OnInit, OnDestroy {
 
   // Liste des actions disponibles
   allActions = Object.values(Action);
+
+  // Liste des stack depth disponibles (enum)
+  allStackDepths = Object.values(StackDepth);
 
   // Action actuellement sélectionnée (depuis la colonne de droite)
   selectedAction: Action | null = null;
@@ -44,6 +47,7 @@ export class RangeEditComponent implements OnInit, OnDestroy {
   constructor() {
     this.rangeForm = this.fb.group({
       name: ['', Validators.required],
+      stackDepth: ['', Validators.required],
       positions: [[], Validators.required]
     });
   }
@@ -59,15 +63,16 @@ export class RangeEditComponent implements OnInit, OnDestroy {
         this.rangeService.getRangeById(id).then(range => {
           this.rangeForm.patchValue({
             name: range.name,
+            stackDepth: range.stackDepth,
             positions: range.positions
-          });
+          }, { emitEvent: false });
           // On suppose que range.hands est déjà un tableau plat
           this.hands = range.hands.map(item => ({
             id: item.id,
             name: item.name,
             action: item.action
           }));
-          // Après avoir chargé les données initiales, on s'assure que hasChanges est à false
+          // Après chargement, on s'assure que hasChanges est false
           this.hasChanges = false;
         }).catch(err => {
           console.error("Erreur lors de la récupération de la range :", err);
@@ -90,7 +95,6 @@ export class RangeEditComponent implements OnInit, OnDestroy {
           ["A3o","K3o","Q3o","J3o","T3o","93o","83o","73o","63o","53o","43o","33","32s"],
           ["A2o","K2o","Q2o","J2o","T2o","92o","82o","72o","62o","52o","42o","32o","22"]
         ];
-        // Aplatir le tableau en un tableau plat
         this.hands = gridData.flat().map(handStr => ({
           id: handStr,
           name: handStr,
@@ -149,7 +153,7 @@ export class RangeEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Retour à la liste des ranges (route "/ranges")
+  // Retour à la liste des ranges (route "/range")
   goBack() {
     if (this.hasChanges && !confirm("Vous avez des modifications non sauvegardées. Quitter sans sauvegarder ?")) {
       return;
@@ -177,14 +181,13 @@ export class RangeEditComponent implements OnInit, OnDestroy {
   // Sauvegarder la range (ajout ou mise à jour)
   saveRange() {
     if (this.rangeForm.invalid || (this.rangeForm.value.positions.length === 0)) {
-      console.log(this.rangeForm.invalid);
-      console.log(this.rangeForm.value.positions.length);
       alert("Veuillez remplir tous les champs obligatoires.");
       return;
     }
     const rangeData: PokerRange = {
       userId: '', // À compléter avec l'ID de l'utilisateur connecté
       name: this.rangeForm.value.name,
+      stackDepth: this.rangeForm.value.stackDepth,
       createdAt: new Date(),
       positions: this.rangeForm.value.positions,
       hands: this.hands

@@ -24,6 +24,9 @@
             <p class="range-positions">
               Positions: {{ range.positions.join(', ') }}
             </p>
+            <p class="range-positions">
+                Stack: {{ range.stackDepth }}
+            </p>
           </div>
           <!-- Bouton supprimer à droite -->
           <button class="delete-button" (click)="deleteRange(range, $event)">

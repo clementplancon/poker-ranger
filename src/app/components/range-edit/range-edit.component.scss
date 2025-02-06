@@ -1,184 +1,199 @@
-    /* Conteneur principal */
-    .range-edit-container {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        background: linear-gradient(135deg, #2e2e2e, #1c1e1e);
-        color: #c3ef61;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      }
-      /* En-tête */
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.5rem 1rem;
-        background: transparent;
-      }
-      .header-left {
-        display: flex;
-        align-items: center;
-      }
-      .header-logo {
-        width: 40px;
-        margin-right: 0.5rem;
-      }
-      .header-title {
-        font-size: 1.2rem;
-      }
-      .header-right {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-      }
-      .save-button,
-      .back-button {
-        background: none;
-        border: none;
-        color: #c3ef61;
-        cursor: pointer;
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.3rem;
-      }
-      .save-button[disabled] {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-      /* Contenu principal */
-      .main-content {
-        flex: 1;
-        display: flex;
-        padding: 1rem;
-        gap: 1rem;
-        overflow: hidden;
-      }
-      /* Panneau gauche : Formulaire et chips */
-      .left-panel {
-        flex: 0 0 15%;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        padding-right: 0.5rem;
-        border-right: 1px solid #c3ef61;
-        overflow-y: auto;
-      }
-      .form-group label {
-        font-size: 0.9rem;
-        margin-bottom: 0.25rem;
-      }
-      .form-group input[type="text"] {
-        padding: 0.25rem;
-        font-size: 0.9rem;
-        border: 1px solid #c3ef61;
-        border-radius: 4px;
-        background: transparent;
-        color: #c3ef61;
-        width: 90%;
-      }
-      .chips-container {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        max-height: 100%;
-        overflow-y: auto;
-      }
-      /* Scrollbar personnalisée pour la zone de chips (Webkit) */
-      .chips-container::-webkit-scrollbar {
-        width: 6px;
-      }
-      .chips-container::-webkit-scrollbar-thumb {
-        background-color: #c3ef61;
-        border-radius: 3px;
-      }
-      .chip {
-        padding: 0.25rem 0.5rem;
-        border: 1px solid #c3ef61;
-        border-radius: 16px;
-        cursor: pointer;
-        font-size: 0.8rem;
-        text-align: center;
-        user-select: none;
-        transition: background-color 0.3s;
-        max-width: 60%;
-      }
-      .chip.selected {
-        background-color: #c3ef61;
-        color: #2e2e2e;
-      }
-      /* Panneau central : Grille des mains */
-      .center-panel {
-        flex: 0 0 65%;
-        padding: 0 1rem;
-        overflow: auto;
-      }
-      .grid-container {
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-      }
-      .grid {
-        display: flex;
-        flex-direction: column;
-      }
-      .grid-row {
-        display: grid;
-        grid-template-columns: repeat(13, 1fr);
-        gap: 2px;
-      }
-      .grid-cell {
-        padding: 0.25rem;
-        border: 1px solid #c3ef61;
-        border-radius: 4px;
-        text-align: center;
-        cursor: pointer;
-        user-select: none;
-        font-size: 0.7rem;
-        height: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* Suppression des effets de hover/focus */
-        transition: none;
-      }
-      .hand-label {
-        font-weight: 700;
-        color: black;
-      }
-      /* Panneau droit : Liste des actions */
-      .right-panel {
-        flex: 0 0 10%;
-        padding-left: 0.5rem;
-        border-left: 1px solid #c3ef61;
-        overflow-y: auto;
-      }
-      .actions-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .action-btn {
-        padding: 0.3rem;
-        font-size: 0.65rem;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        color: #2e2e2e;
-        transition: width 0.2s, transform 0.2s;
-        width: 60%;
-        align-self: center;
-      }
-      .action-btn.selected {
-        width: 90%;
-        transform: scale(1.1);
-      }
-      /* Scrollbar personnalisée pour la colonne d'actions (Webkit) */
-      .right-panel::-webkit-scrollbar {
-        width: 6px;
-      }
-      .right-panel::-webkit-scrollbar-thumb {
-        background-color: #c3ef61;
-        border-radius: 3px;
-      }
+/* Conteneur principal */
+.range-edit-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: linear-gradient(135deg, #2e2e2e, #1c1e1e);
+    color: #c3ef61;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border-bottom: 1px solid #c3ef61;
+  }
+  
+  /* Header inputs (nom et profondeur de stack) */
+  .header-inputs {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+  }
+  .header-input {
+    padding: 0.3rem;
+    font-size: 1rem;
+    border: 1px solid #c3ef61;
+    border-radius: 4px;
+    background: transparent;
+    color: #c3ef61;
+  }
+  .header-select {
+    padding: 0.3rem;
+    font-size: 1rem;
+    border: 1px solid #c3ef61;
+    border-radius: 4px;
+    background: transparent;
+    color: #c3ef61;
+  }
+  .header-select option {
+    background: #2e2e2e;
+    color: #c3ef61;
+  }
+  
+  /* Header right (boutons) */
+  .header-right {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .save-button,
+  .back-button {
+    background: none;
+    border: none;
+    color: #c3ef61;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem;
+  }
+  .save-button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Main content */
+  .main-content {
+    flex: 1;
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    overflow: hidden;
+  }
+  
+  /* Panneau gauche : Positions uniquement */
+  .left-panel {
+    flex: 0 0 15%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-right: 0.5rem;
+    border-right: 1px solid #c3ef61;
+    overflow-y: auto;
+  }
+  .positions-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  .chips-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+  /* Scrollbar personnalisée pour la zone de chips (Webkit) */
+  .chips-container::-webkit-scrollbar {
+    width: 6px;
+  }
+  .chips-container::-webkit-scrollbar-thumb {
+    background-color: #c3ef61;
+    border-radius: 3px;
+  }
+  .chip {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #c3ef61;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-align: center;
+    user-select: none;
+    transition: background-color 0.3s;
+    max-width: 100%;
+  }
+  .chip.selected {
+    background-color: #c3ef61;
+    color: #2e2e2e;
+  }
+  
+  /* Panneau central : Grille des mains */
+  .center-panel {
+    flex: 0 0 65%;
+    padding: 0 1rem;
+    overflow: auto;
+  }
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+  .grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .grid-row {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 2px;
+  }
+  .grid-cell {
+    padding: 0.25rem;
+    border: 1px solid #c3ef61;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.7rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: none;
+  }
+  .hand-label {
+    font-weight: 700;
+    color: black;
+  }
+  
+  /* Panneau droit : Liste des actions */
+  .right-panel {
+    flex: 0 0 10%;
+    padding-left: 0.5rem;
+    border-left: 1px solid #c3ef61;
+    overflow-y: auto;
+  }
+  .actions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .action-btn {
+    padding: 0.3rem;
+    font-size: 0.65rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #2e2e2e;
+    transition: width 0.2s, transform 0.2s;
+    width: 60%;
+    align-self: center;
+  }
+  .action-btn.selected {
+    width: 100%;
+    transform: scale(1.1);
+  }
+  /* Scrollbar personnalisée pour la colonne d'actions (Webkit) */
+  .right-panel::-webkit-scrollbar {
+    width: 6px;
+  }
+  .right-panel::-webkit-scrollbar-thumb {
+    background-color: #c3ef61;
+    border-radius: 3px;
+  }
+  
