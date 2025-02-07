@@ -5,7 +5,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #2e2e2e, #1c1c1c);
+        background: linear-gradient(135deg, #232526, #414345);
         overflow: hidden;
       }
       
@@ -26,30 +26,24 @@
         pointer-events: none; /* ne bloque pas les interactions */
       }
   
-      /* Logo en arrière-plan, centré et semi-transparent */
-      .logo-bg {
-        position: absolute;
-        max-width: 80%;
-        max-height: 80%; /* Ajustable selon vos besoins */
-        opacity: 0.75;
-        z-index: 0;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-  
       /* Carte glass design */
       .glass-card {
         position: relative;
         z-index: 1;
         backdrop-filter: blur(10px);
-        background: linear-gradient(135deg, rgba(195,239,97,0.3), rgba(255,255,255,0));
-        border: 1px solid #c3ef61;
+        background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+        border: 1px solid white;
         border-radius: 20px;
         padding: 2rem;
         text-align: center;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         max-width: 320px;
+      }
+  
+      /* Logo en arrière-plan, centré et semi-transparent */
+      .logo {
+        max-width: 20%;
+        max-height: 20%; /* Ajustable selon vos besoins */
       }
   
       /* Titre avec police élégante et neutre */
@@ -65,8 +59,8 @@
       /* Bouton de connexion avec bordure animée */
       .login-button {
         background: transparent;
-        border: 2px solid #c3ef61;
-        color: #c3ef61;
+        border: 2px solid white;
+        color: white;
         padding: 0.75rem 1.5rem;
         font-size: 1rem;
         border-radius: 8px;
@@ -76,6 +70,6 @@
   
       .login-button:hover,
       .login-button:focus {
-        box-shadow: 0 0 10px #c3ef61;
+        box-shadow: 0 0 10px white;
         outline: none;
       }

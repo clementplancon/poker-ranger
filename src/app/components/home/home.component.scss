@@ -2,8 +2,25 @@
 .home-container {
     display: flex;
     height: 100vh;
-    background: linear-gradient(135deg, #2e2e2e, #1c1c1c);
+    background: linear-gradient(135deg, #232526, #414345);
     overflow: hidden;
+  }
+      
+  /* Pseudo-élément pour le flare diffus sur tout l'écran */
+  .home-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Dégradé radial très léger, centré vers le côté droit */
+    background: radial-gradient(
+      circle at 90% 50%,
+      rgba(195, 239, 97, 0.1), /* très subtil */
+      transparent 70%
+    );
+    pointer-events: none; /* ne bloque pas les interactions */
   }
   
   /* Section gauche : logo et titre */
@@ -11,21 +28,61 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    color: #c3ef61;
+    align-items: center;
+    gap: 2rem;
     padding: 1rem;
+    color: #c3ef61;
   }
   
   .logo-home {
-    width: 150px; /* Ajustable */
-    margin-bottom: 1rem;
+    max-width: 20%; /* Ajustable */
+    max-height: 20%; /* Ajustable */
   }
   
   .app-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    font-family: "Wallpoet", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .logout-button {
+    margin: auto;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: rgba(195,239,97,1);
+    color: #333333;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+  }
+
+  .logout-button-text {
+    font-size: 1rem;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    margin: 0;
+    margin: auto;
+    margin-right: 0.5rem;
+  }
+
+  .install-button {
+    margin: auto;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: rgba(195,239,97,1);
+    color: #333333;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+  }
+
+  .install-button-text {
+    font-size: 1rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: auto;
+    margin-right: 0.5rem;
   }
   
   /* Section droite : conteneur des cartes */
@@ -43,27 +100,31 @@
   .card {
     position: relative;
     backdrop-filter: blur(10px);
-    background: linear-gradient(135deg, rgba(195,239,97,0.3), rgba(255,255,255,0));
-    border: 1px solid #c3ef61;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+    border: 1px solid white;
     border-radius: 20px;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     max-width: 80%;
     width: 80%;  /* Pour s'adapter aux petits écrans */
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
   .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.5);
+    box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.5);
   }
   
   /* Style pour l'icône dans la carte */
   .icon {
     font-size: 48px;
-    color: #c3ef61;
+    color: white;
     margin-bottom: 0.5rem;
   }
   
@@ -72,6 +133,6 @@
     font-size: 1.5rem;
     margin: 0;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color: #c3ef61;
+    color: white;
   }
   

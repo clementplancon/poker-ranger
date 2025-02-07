@@ -1,8 +1,23 @@
 <div class="home-container">
+  <ngx-particles
+  [id]="id"
+  [options]="particlesOptions"
+  (particlesLoaded)="particlesLoaded($event)"
+></ngx-particles>
     <!-- Section gauche : Logo et nom de l'application -->
     <div class="left-section">
-      <img src="/assets/logo_app.png" alt="Poker Ranger Logo" class="logo-home" />
-      <h1 class="app-title">Poker Ranger</h1>
+      <div class="card">
+        <img src="/assets/logo_app.png" alt="Poker Ranger Logo" class="logo-home" />
+        <h1 class="app-title">Poker Ranger</h1>
+        <button class="logout-button" (click)="logout()">
+          <span class="logout-button-text">Se déconnecter</span>
+          <span class="material-symbols-outlined">logout</span>
+        </button>
+        <button class="install-button" (click)="installPwa()">
+          <span class="install-button-text">Installer l'application</span>
+          <span class="material-symbols-outlined">get_app</span>
+        </button>
+      </div>
     </div>
     
     <!-- Section droite : Cartes de navigation -->

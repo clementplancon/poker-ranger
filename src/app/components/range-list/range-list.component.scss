@@ -2,11 +2,29 @@
 .range-list-container {
     position: relative;
     height: 100vh;
-    background: linear-gradient(135deg, #2e2e2e, #1c1e1c);
+    background: linear-gradient(135deg, #232526, #414345);
     display: flex;
     flex-direction: column;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
   
+  /* Pseudo-élément pour le flare diffus sur tout l'écran */
+  .range-list-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Dégradé radial très léger, centré vers le côté droit */
+    background: radial-gradient(
+      circle at 90% 50%,
+      rgba(195, 239, 97, 0.1), /* très subtil */
+      transparent 70%
+    );
+    pointer-events: none; /* ne bloque pas les interactions */
+  }
+
   /* Header */
   .header {
     display: flex;
@@ -15,6 +33,7 @@
     padding: 0.5rem 1rem;
     background: transparent;
     color: #c3ef61;
+    z-index: 100;
   }
   
   .header-left {
@@ -66,17 +85,18 @@
   
   .range-card {
     position: relative;
-    background: linear-gradient(135deg, rgba(195,239,97,0.3), rgba(255,255,255,0));
-    border: 1px solid #c3ef61;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+    border: 1px solid white;
     border-radius: 20px;
     padding: 1rem;
     margin-bottom: 1rem;
-    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
   }
   
   .range-card:hover {
@@ -90,24 +110,24 @@
   .range-name {
     margin: 0;
     font-size: 1.5rem;
-    color: #c3ef61;
+    color: white;
   }
   
   .range-positions {
     margin: 0.5rem 0 0 0;
     font-size: 0.9rem;
-    color: #c3ef61;
+    color: white;
   }
   
   .loading {
-    color: #c3ef61;
+    color: white;
     text-align: center;
     margin-top: 2rem;
   }
   
   /* Bouton supprimer dans la carte */
   .delete-button {
-    background-color: #c3ef61;
+    background-color: white;
     border: none;
     border-radius: 50%;
     width: 40px;

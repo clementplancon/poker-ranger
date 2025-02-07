@@ -1,8 +1,13 @@
+
 <div class="login-container">
-    <!-- Logo en arrière-plan -->
-    <img src="/assets/logo_app.png" alt="Poker Ranger Logo" class="logo-bg" />
+  <ngx-particles
+  [id]="id"
+  [options]="particlesOptions"
+  (particlesLoaded)="particlesLoaded($event)"
+></ngx-particles>
     <!-- Carte glass avec contenu -->
     <div class="glass-card">
+      <img src="/assets/logo_app.png" alt="Poker Ranger Logo" class="logo" />
       <h1 class="title">Poker Ranger</h1>
       <button class="login-button" (click)="login()">Se connecter avec Google</button>
     </div>

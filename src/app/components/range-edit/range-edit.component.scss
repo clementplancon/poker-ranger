@@ -3,9 +3,26 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background: linear-gradient(135deg, #2e2e2e, #1c1e1e);
+    background: linear-gradient(135deg, #232526, #414345);
     color: #c3ef61;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  
+  /* Pseudo-élément pour le flare diffus sur tout l'écran */
+  .range-edit-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Dégradé radial très léger, centré vers le côté droit */
+    background: radial-gradient(
+      circle at 90% 50%,
+      rgba(195, 239, 97, 0.1), /* très subtil */
+      transparent 70%
+    );
+    pointer-events: none; /* ne bloque pas les interactions */
   }
   
   /* Header */
@@ -27,22 +44,22 @@
   .header-input {
     padding: 0.3rem;
     font-size: 1rem;
-    border: 1px solid #c3ef61;
+    border: 1px solid white;
     border-radius: 4px;
     background: transparent;
-    color: #c3ef61;
+    color: white;
   }
   .header-select {
     padding: 0.3rem;
     font-size: 1rem;
-    border: 1px solid #c3ef61;
+    border: 1px solid white;
     border-radius: 4px;
     background: transparent;
-    color: #c3ef61;
+    color: white;
   }
   .header-select option {
     background: #2e2e2e;
-    color: #c3ef61;
+    color: white;
   }
   
   /* Header right (boutons) */
@@ -99,16 +116,17 @@
     overflow-y: auto;
   }
   /* Scrollbar personnalisée pour la zone de chips (Webkit) */
-  .chips-container::-webkit-scrollbar {
-    width: 6px;
-  }
-  .chips-container::-webkit-scrollbar-thumb {
-    background-color: #c3ef61;
-    border-radius: 3px;
-  }
+  // .chips-container::-webkit-scrollbar {
+  //   width: 6px;
+  // }
+  // .chips-container::-webkit-scrollbar-thumb {
+  //   background-color: #c3ef61;
+  //   border-radius: 3px;
+  // }
   .chip {
     padding: 0.25rem 0.5rem;
-    border: 1px solid #c3ef61;
+    border: 1px solid white;
+    color: white;
     border-radius: 16px;
     cursor: pointer;
     font-size: 0.8rem;
@@ -119,6 +137,7 @@
   }
   .chip.selected {
     background-color: #c3ef61;
+    border: 1px solid #c3ef61;
     color: #2e2e2e;
   }
   
@@ -189,11 +208,11 @@
     transform: scale(1.1);
   }
   /* Scrollbar personnalisée pour la colonne d'actions (Webkit) */
-  .right-panel::-webkit-scrollbar {
-    width: 6px;
-  }
-  .right-panel::-webkit-scrollbar-thumb {
-    background-color: #c3ef61;
-    border-radius: 3px;
-  }
+  // .right-panel::-webkit-scrollbar {
+  //   width: 6px;
+  // }
+  // .right-panel::-webkit-scrollbar-thumb {
+  //   background-color: #c3ef61;
+  //   border-radius: 3px;
+  // }
   

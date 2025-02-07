@@ -1,4 +1,9 @@
 <div class="range-list-container">
+  <ngx-particles
+  [id]="id"
+  [options]="particlesOptions"
+  (particlesLoaded)="particlesLoaded($event)"
+></ngx-particles>
     <!-- Header -->
     <header class="header">
       <div class="header-left">
